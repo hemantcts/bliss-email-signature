@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<link rel="icon" href="https://www.blissbathandkitchen.com/wp-content/themes/bliss/assets/img/favicon-32.png">
+<title>Bliss Email Signature</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a two-pane maker (form left, live signature right) above a numbered Outlook guide; stacks on phones. */
+:root {
+  --bg: #f7f3ec;
+  --surface: #ffffff;
+  --fg: #2a2119;
+  --muted: #6b5f52;
+  --line: #e4dbcd;
+  --gold: #8a6a36;
+  --gold-soft: #c9a870;
+  --ok: #2f6b45;
+  --code-bg: #f2ece2;
+  --display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --body: "Karla", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #171310; --surface: #211b16; --fg: #efe7da; --muted: #b3a593; --line: #3a3027;
+    --gold: #d6b47a; --gold-soft: #a9834a; --ok: #8fd0a6; --code-bg: #2a231c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #171310; --surface: #211b16; --fg: #efe7da; --muted: #b3a593; --line: #3a3027;
+  --gold: #d6b47a; --gold-soft: #a9834a; --ok: #8fd0a6; --code-bg: #2a231c; color-scheme: dark;
+}
+body { background: var(--bg); color: var(--fg); font: 15px/1.6 var(--body); }
+.wrap { max-width: 1040px; margin: 0 auto; padding-block: 40px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 40px; }
+header { display: grid; gap: 8px; }
+.eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+h1 { font: 600 clamp(32px, 5.5vw, 46px)/1.05 var(--display); margin: 0; text-wrap: balance; }
+h2 { font: 600 30px/1.15 var(--display); margin: 0; text-wrap: balance; }
+h3 { font-size: 15px; margin: 0; font-weight: 700; }
+p { margin: 0; max-width: 68ch; }
+.lede { color: var(--muted); font-size: 16px; }
+.maker { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 24px; align-items: start; }
+@media (max-width: 760px) { .maker { grid-template-columns: 1fr; } }
+form { display: grid; gap: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 20px; }
+label { display: grid; gap: 4px; font-size: 13px; font-weight: 600; }
+label span { color: var(--muted); font-weight: 400; }
+input { font: inherit; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 9px 11px; }
+input:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.preview { display: grid; gap: 14px; min-width: 0; }
+.sheet { background: #ffffff; border: 1px solid var(--line); border-radius: 8px; padding: 28px 24px; overflow-x: auto; }
+.sheet-note { font-size: 13px; color: var(--muted); }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+button { font: 600 14px var(--body); border-radius: 6px; padding: 10px 16px; cursor: pointer; border: 1px solid var(--gold); }
+.primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.ghost { background: transparent; color: var(--fg); }
+.status { font-size: 13px; color: var(--ok); min-height: 1.4em; }
+section { display: grid; gap: 18px; }
+.settings { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow-x: auto; }
+table.cfg { width: 100%; border-collapse: collapse; font-size: 14px; }
+.cfg th, .cfg td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.cfg th { width: 40%; font-weight: 600; color: var(--muted); }
+.cfg tr:last-child th, .cfg tr:last-child td { border-bottom: 0; }
+code { font: 13px/1.4 ui-monospace, "Cascadia Mono", Consolas, monospace; background: var(--code-bg); padding: 2px 6px; border-radius: 4px; word-break: break-all; }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 20px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.card .tag { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.callout { border-left: 3px solid var(--gold-soft); padding: 4px 0 4px 14px; color: var(--muted); font-size: 14px; }
+footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 16px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<style>body{margin:0}*,*::before,*::after{box-sizing:border-box}img{max-width:100%}</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Bliss Bath &amp; Kitchen · Email</div>
+    <h1>Email signature and Outlook setup</h1>
+    <p class="lede">Make a signature with the new BLISS logo, then connect your mailbox to Outlook. Your emails stay on the mail server, so they appear in Outlook automatically.</p>
+  </header>
+
+  <section aria-labelledby="sig-h">
+    <div style="display:grid;gap:6px">
+      <h2 id="sig-h">1. Your signature</h2>
+      <p class="sheet-note">Fill in your details. Leave a field empty to hide that line.</p>
+    </div>
+    <div class="maker">
+      <form id="f" autocomplete="off">
+        <label for="name">Full name<input id="name" value="Bliss Customer Care"></label>
+        <label for="title">Job title <span>(optional)</span><input id="title" value=""></label>
+        <label for="email">Email<input id="email" type="email" value="info@blissbathandkitchen.com"></label>
+        <label for="direct">Direct or mobile phone <span>(optional)</span><input id="direct" value=""></label>
+        <label for="phone">Main phone<input id="phone" value="1-855-366-1001"></label>
+      </form>
+      <div class="preview">
+        <div class="sheet" id="sheet" aria-label="Signature preview"></div>
+        <div class="actions">
+          <button type="button" class="primary" id="copy">Copy signature</button>
+          <button type="button" class="ghost" id="copyhtml">Copy HTML code</button>
+          <span class="status" id="status" role="status"></span>
+        </div>
+        <p class="sheet-note">"Copy signature" copies it with the logo and formatting, ready to paste into Outlook. If your browser blocks copying, select the signature above with the mouse and press Ctrl+C. "Copy HTML code" is for tools that ask for HTML.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="out-h">
+    <div style="display:grid;gap:6px">
+      <h2 id="out-h">2. Add the mailbox to Outlook</h2>
+      <p class="sheet-note">Use these settings for info@ and for any other @blissbathandkitchen.com mailbox (change the email address).</p>
+    </div>
+    <div class="settings"><table class="cfg">
+      <tr><th>Email address / username</th><td><code>info@blissbathandkitchen.com</code></td></tr>
+      <tr><th>Password</th><td>The mailbox's own password (the one used for webmail)</td></tr>
+      <tr><th>Account type</th><td>IMAP</td></tr>
+      <tr><th>Incoming server</th><td><code>mail.blissbathandkitchen.com</code>, port <code>993</code>, SSL/TLS</td></tr>
+      <tr><th>Outgoing server (SMTP)</th><td><code>mail.blissbathandkitchen.com</code>, port <code>465</code>, SSL/TLS</td></tr>
+      <tr><th>Outgoing server needs sign-in</th><td>Yes, same username and password as incoming</td></tr>
+    </table></div>
+    <div class="steps">
+      <div class="card">
+        <div class="tag">Outlook for Windows (new) and Mac</div>
+        <ol>
+          <li>Settings (gear) → Accounts → Email accounts → <b>Add account</b>.</li>
+          <li>Type the email address and choose <b>Continue</b>.</li>
+          <li>When asked for the account type, pick <b>IMAP</b>.</li>
+          <li>Enter the password, then open <b>Show more</b> and fill in the servers and ports from the table.</li>
+          <li>Choose <b>Continue</b>. Your folders start downloading.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <div class="tag">Outlook classic (Microsoft 365, 2019, 2021)</div>
+        <ol>
+          <li>File → <b>Add Account</b>.</li>
+          <li>Type the email address, open <b>Advanced options</b>, tick <b>Let me set up my account manually</b>, choose Connect.</li>
+          <li>Pick <b>IMAP</b>.</li>
+          <li>Incoming: server and port 993, encryption SSL/TLS. Outgoing: server and port 465, SSL/TLS.</li>
+          <li>Enter the password and choose Connect, then Done.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <div class="tag">Outlook on iPhone or Android</div>
+        <ol>
+          <li>Add account → <b>Add email account</b>, type the address.</li>
+          <li>Choose <b>IMAP</b> (on Android tap "Setup account manually" first).</li>
+          <li>Turn on <b>Advanced settings</b> and fill in the servers, ports and password from the table.</li>
+          <li>Tap the tick to finish.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="move-h">
+    <div style="display:grid;gap:6px">
+      <h2 id="move-h">3. Moving your existing emails</h2>
+    </div>
+    <div class="steps">
+      <div class="card">
+        <div class="tag">Emails in webmail now</div>
+        <h3>Nothing to move</h3>
+        <p>With IMAP, Outlook shows what is on the mail server: Inbox, Sent and every folder appear by themselves after the account is added. Large mailboxes can take an hour or more on the first sync.</p>
+      </div>
+      <div class="card">
+        <div class="tag">Emails only on an old computer</div>
+        <h3>Copy them into the new account</h3>
+        <ol>
+          <li>If the old mail is in Outlook on that computer (often a POP account), add the new IMAP account there first, as above.</li>
+          <li>Drag the old folders (Inbox, Sent, others) onto the new account in the folder list. They upload to the server.</li>
+          <li>Once they appear in webmail, every device sees them.</li>
+        </ol>
+        <p class="callout">If the old mail is in a .pst file, open it in Outlook classic (File → Open &amp; Export → Open Outlook Data File) and drag the folders across the same way.</p>
+      </div>
+      <div class="card">
+        <div class="tag">Emails in another provider</div>
+        <h3>Gmail, another host or an old domain</h3>
+        <p>Add both accounts to Outlook classic and drag the folders from the old account to the new one. For very large mailboxes, ask SiteGround about their email migration tool.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="add-h">
+    <div style="display:grid;gap:6px">
+      <h2 id="add-h">4. Add the signature in Outlook</h2>
+    </div>
+    <div class="steps">
+      <div class="card">
+        <div class="tag">Outlook for Windows (new), Mac and Outlook on the web</div>
+        <ol>
+          <li>Click <b>Copy signature</b> above.</li>
+          <li>Settings → Accounts (or Mail) → <b>Signatures</b> → New signature.</li>
+          <li>Name it "Bliss", click in the box and press <b>Ctrl+V</b> (Cmd+V on Mac).</li>
+          <li>Choose it as the default for new messages and replies, then Save.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <div class="tag">Outlook classic</div>
+        <ol>
+          <li>Click <b>Copy signature</b> above.</li>
+          <li>File → Options → Mail → <b>Signatures</b> → New, name it "Bliss".</li>
+          <li>Click in the edit box and press <b>Ctrl+V</b>.</li>
+          <li>Pick it for new messages and replies/forwards for the right account, then OK.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <div class="tag">Phones</div>
+        <p>The Outlook phone app only keeps plain text signatures. Use: your name, Bliss Bath &amp; Kitchen, the main phone number and the website.</p>
+      </div>
+    </div>
+    <p class="callout">The logo loads from the Bliss website, so it stays sharp and current. Some recipients' email programs hide images until they choose "show images"; the text part of the signature always shows.</p>
+  </section>
+
+  <footer>Bliss Bath &amp; Kitchen · 5 Shields Court, Unit 104, Markham, Ontario L3R 0G3 · www.blissbathandkitchen.com</footer>
+</div>
+
+<script>
+(function () {
+  var LOGO = 'https://www.blissbathandkitchen.com/wp-content/themes/bliss/assets/img/logo-email.png';
+  var SITE = 'https://www.blissbathandkitchen.com';
+  var ids = ['name', 'title', 'email', 'direct', 'phone'];
+  var el = {};
+  ids.forEach(function (k) { el[k] = document.getElementById(k); });
+  var sheet = document.getElementById('sheet');
+  var status = document.getElementById('status');
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function tel(s) { return s.replace(/[^0-9+]/g, ''); }
+
+  // Email-safe markup: tables, inline styles, web-safe fonts, a hosted PNG logo.
+  function build() {
+    var v = {};
+    ids.forEach(function (k) { v[k] = el[k].value.trim(); });
+    var ink = '#2a2119', gold = '#a9834a', grey = '#6b5f52';
+    var rows = [];
+    if (v.name) rows.push('<tr><td style="font-family:Georgia,\'Times New Roman\',serif;font-size:18px;line-height:24px;color:' + ink + ';font-weight:bold;padding:0">' + esc(v.name) + '</td></tr>');
+    if (v.title) rows.push('<tr><td style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:' + gold + ';letter-spacing:1px;text-transform:uppercase;padding:0 0 6px">' + esc(v.title) + '</td></tr>');
+    else rows.push('<tr><td style="font-size:0;line-height:6px;height:6px;padding:0">&nbsp;</td></tr>');
+    var contact = [];
+    if (v.direct) contact.push('<span style="color:' + grey + '">D</span>&nbsp;<a href="tel:' + tel(v.direct) + '" style="color:' + ink + ';text-decoration:none">' + esc(v.direct) + '</a>');
+    if (v.phone) contact.push('<span style="color:' + grey + '">T</span>&nbsp;<a href="tel:' + tel(v.phone) + '" style="color:' + ink + ';text-decoration:none">' + esc(v.phone) + '</a>');
+    if (contact.length) rows.push('<tr><td style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:20px;color:' + ink + ';padding:0">' + contact.join('&nbsp;&nbsp;&nbsp;') + '</td></tr>');
+    if (v.email) rows.push('<tr><td style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:20px;padding:0"><span style="color:' + grey + '">E</span>&nbsp;<a href="mailto:' + esc(v.email) + '" style="color:' + ink + ';text-decoration:none">' + esc(v.email) + '</a></td></tr>');
+    rows.push('<tr><td style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:20px;padding:0"><span style="color:' + grey + '">W</span>&nbsp;<a href="' + SITE + '" style="color:' + gold + ';text-decoration:none;font-weight:bold">www.blissbathandkitchen.com</a></td></tr>');
+    rows.push('<tr><td style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:' + grey + ';padding:6px 0 0">5 Shields Court, Unit 104, Markham, ON L3R 0G3</td></tr>');
+    rows.push('<tr><td style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;padding:4px 0 0"><a href="https://www.instagram.com/blissbathandkitchen/" style="color:' + gold + ';text-decoration:none">Instagram</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://www.facebook.com/blissbathandkitchen/" style="color:' + gold + ';text-decoration:none">Facebook</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://x.com/blissbathandkit" style="color:' + gold + ';text-decoration:none">X</a></td></tr>');
+
+    return '<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">'
+      + '<tr>'
+      + '<td valign="middle" style="padding:0 18px 0 0;border-right:2px solid ' + gold + '">'
+      + '<a href="' + SITE + '" style="text-decoration:none"><img src="' + LOGO + '" width="150" height="47" alt="BLISS Bath &amp; Kitchen" style="display:block;border:0;width:150px;height:47px"></a>'
+      + '<div style="font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:12px;letter-spacing:3px;color:' + ink + ';padding:6px 0 0;text-align:center">BATH &amp; KITCHEN</div>'
+      + '</td>'
+      + '<td valign="middle" style="padding:0 0 0 18px"><table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse">' + rows.join('') + '</table></td>'
+      + '</tr></table>';
+  }
+
+  function render() { sheet.innerHTML = build(); status.textContent = ''; }
+  ids.forEach(function (k) { el[k].addEventListener('input', render); });
+  document.getElementById('f').addEventListener('submit', function (e) { e.preventDefault(); });
+
+  function selectSheet() {
+    var r = document.createRange(); r.selectNodeContents(sheet);
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+
+  document.getElementById('copy').addEventListener('click', function () {
+    var html = build();
+    try {
+      if (window.ClipboardItem && navigator.clipboard && navigator.clipboard.write) {
+        var item = new ClipboardItem({
+          'text/html': new Blob([html], { type: 'text/html' }),
+          'text/plain': new Blob([sheet.innerText], { type: 'text/plain' })
+        });
+        navigator.clipboard.write([item]).then(function () {
+          status.textContent = 'Copied. Paste it into Outlook\'s signature box.';
+        }, function () {
+          selectSheet(); status.textContent = 'Selected. Press Ctrl+C (Cmd+C on Mac) to copy.';
+        });
+        return;
+      }
+    } catch (e) { /* fall through */ }
+    selectSheet(); status.textContent = 'Selected. Press Ctrl+C (Cmd+C on Mac) to copy.';
+  });
+
+  document.getElementById('copyhtml').addEventListener('click', function () {
+    var html = build();
+    var done = function () { status.textContent = 'HTML code copied.'; };
+    try {
+      navigator.clipboard.writeText(html).then(done, function () { status.textContent = 'Copying was blocked by the browser. Use "Copy signature" instead.'; });
+    } catch (e) { status.textContent = 'Copying was blocked by the browser. Use "Copy signature" instead.'; }
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
